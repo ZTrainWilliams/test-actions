@@ -1,7 +1,7 @@
 const { notificationSuccess } = require('./notification');
 
 const BUILD_URL =
-  process.argv[2] || 'https://github.com/RootLinkFE/devops-rn-app/actions';
+  process.argv[2] || 'https://github.com/ZTrainWilliams/test-actions/actions/actions';
 
 const platform = process.argv[3] || 'Android';
 

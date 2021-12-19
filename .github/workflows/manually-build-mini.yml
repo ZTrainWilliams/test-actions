@@ -45,39 +45,10 @@ jobs:
       - name: Install npm dependencies
         run: |
           npm install --legacy-peer-deps
+      - name: Build Project
+        run: |
+          npm run build
+          echo "Start Build"
       - name: Start Build Apk Message
         run: |
-          node ./send-startmsg.js "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" "${{ github.event.inputs.uploadCloud }}"  "Android" "${{ github.event.inputs.buildBranch }}"
-      - name: Build Android Release
-        run: |
-          node ./scripts/env.js "${{ github.event.inputs.buildBranch }}"
-          cd android && chmod +x ./gradlew && ./gradlew assembleRelease
-      - name: Upload Artifact
-        if: ${{ github.event.inputs.uploadArtifact == 'true' }}
-        uses: actions/upload-artifact@v1
-        with:
-          name: app-release.apk
-          path: android/app/build/outputs/apk/release/
-      - name: Upload Artifact Success
-        if: ${{ github.event.inputs.uploadArtifact == 'true' }}
-        run: |
-          npm i request
-          node ./send-success.js "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" "${{ github.event.inputs.uploadCloud }}"  "Android"  "${{ github.event.inputs.buildBranch }}"
-      - name: Push to Fir
-        id: PushToFir
-        run: |
-          curl -F 'file=@android/app/build/outputs/apk/release/app-release.apk' -F '_api_key=${{ secrets.PGYER_API_KEY }}' https://www.pgyer.com/apiv2/app/upload
-        continue-on-error: true
-      - name: Send fir error notify
-        id: firErrorMessage
-        if: steps.PushToFir.outcome != 'success'
-        run: |
-          node ./send-msg.js "Android 附件同步到蒲公英平台失败。请检查错误重新执行或前往Action直接下载apk文件 \n>[Job RunId](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }})" "${{ github.event.inputs.buildBranch }}"
-      - name: Send finally notify
-        run: |
-          node ./send-msg.js "Android 构建成功，并同步到蒲公英平台。\n>[Job Link](${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}) \n>蒲公英地址:[https://www.pgyer.com/xxxxx](https://www.pgyer.com/xxxxx)" "${{ github.event.inputs.buildBranch }}"
-      - name: On Failure
-        if: ${{ failure() }}
-        run: |
-          npm i request
-          node ./send-error.js "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" "Android" "${{ github.event.inputs.buildBranch }}"
+          node ./send-startmsg.js "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" "${{ github.event.inputs.uploadCloud }}"  "Build" "${{ github.event.inputs.buildBranch }}"
