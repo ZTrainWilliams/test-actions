@@ -1,11 +1,11 @@
-name: Android构建
+name: 打包构建
 on:
   workflow_dispatch:
     inputs:
       buildBranch:
         description: '输入构建分支(dev/test/master/prod)'
         required: true
-        default: 'test'
+        default: 'master'
       uploadArtifact:
         description: '是否将生成的apk上传到 Github Artifact (true/false)'
         required: false
@@ -21,7 +21,7 @@ env:
   MENTION_MOBILE_LIST: ${{ secrets.MENTION_MOBILE_LIST }}
 
 jobs:
-  build-android:
+  build-project:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
