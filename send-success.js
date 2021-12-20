@@ -1,7 +1,7 @@
 const { notificationSuccess } = require('./notification');
 const { mentionList } = require('./notification-cfg');
 const BUILD_URL =
-  process.argv[2] || 'https://github.com/ZTrainWilliams/test-actions/actions/actions';
+  process.argv[2] || 'https://github.com/ZTrainWilliams/test-actions/actions';
 const uploadCloud = process.argv[3];
 const platform = process.argv[4] || 'Android';
 const branchName = process.argv[5];

@@ -1,7 +1,7 @@
 # devops-rn-app
 
-[![Android](https://github.com/ZTrainWilliams/test-actions/actions/actions/workflows/manually-build-android.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/actions/workflows/manually-build-android.yml)
-[![IOS](https://github.com/ZTrainWilliams/test-actions/actions/actions/workflows/manually-build-ios.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/actions/workflows/manually-build-ios.yml)
+[![Android](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-android.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-android.yml)
+[![IOS](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-ios.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-ios.yml)
 
 利用 Action 构建私库 gitlab rn app 代码
 

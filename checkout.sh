@@ -11,8 +11,6 @@ testBranch='test'
 masterBranch='master'
 prodBranch='prod'
 
-echo "repositoryUrl：$repositoryUrl"
-
 function log() {
   echo "$(date)>>>>$@"
 }

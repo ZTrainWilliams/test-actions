@@ -6,10 +6,10 @@ on:
         description: '输入构建分支(dev/test/master/prod)'
         required: true
         default: 'master'
-      uploadArtifact:
-        description: '是否将生成的apk上传到 Github Artifact (true/false)'
-        required: false
-        default: 'false'
+      buildSuffix:
+        description: '输入构建命令后缀(dev/test/master/prod)'
+        required: true
+        default: 'test'
       uploadCloud:
         description: '是否将生成的apk上传到蒲公英。(true/false)'
         required: true
@@ -47,8 +47,8 @@ jobs:
           npm install --legacy-peer-deps
       - name: Build Project
         run: |
-          npm run build
-          echo "Start Build"
+          npm run build:${{ github.event.inputs.buildSuffix }}
+          echo "Start Build - ${{ github.event.inputs.buildSuffix }}"
       - name: Start Build Apk Message
         run: |
           node ./send-startmsg.js "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}" "${{ github.event.inputs.uploadCloud }}"  "Build" "${{ github.event.inputs.buildBranch }}"
