@@ -3,6 +3,9 @@
 
 set -e
 
+echo(SECRETS)
+echo(GITLAB_REPO_URL)
+
 repositoryUrl="${GITLAB_REPO_URL}"
 branchName=${1}
 devBranch='dev'
