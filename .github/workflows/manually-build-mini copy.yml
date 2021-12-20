@@ -1,4 +1,4 @@
-name: 打包构建
+name: 打包构建copy
 on:
   workflow_dispatch:
     inputs:
