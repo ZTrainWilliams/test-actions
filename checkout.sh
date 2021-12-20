@@ -3,8 +3,6 @@
 
 set -e
 
-echo(SECRETS)
-echo(GITLAB_REPO_URL)
 
 repositoryUrl="${GITLAB_REPO_URL}"
 branchName=${1}
@@ -12,6 +10,8 @@ devBranch='dev'
 testBranch='test'
 masterBranch='master'
 prodBranch='prod'
+
+echo "repositoryUrl：$repositoryUrl"
 
 function log() {
   echo "$(date)>>>>$@"
@@ -44,7 +44,7 @@ fi
 # cd ..  
 
 # 将代码放到github runner 执行目录下
-cd rn-app && mv * ../ 
+cd roothub && mv * ../ 
 
 pwd
 
