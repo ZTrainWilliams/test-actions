@@ -10,7 +10,7 @@ env:
   FONT_WECOM_WEBHOOK_KEY: ${{ secrets.FONT_WECOM_WEBHOOK_KEY }}
 
 jobs:
-  bot:
+  build-project:
     runs-on: ubuntu-latest
     steps:
     # 首先copy git仓库到虚拟机上
