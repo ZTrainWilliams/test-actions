@@ -1,4 +1,4 @@
-name: "GitHub Actions fontBlog Bot"
+name: "sendFontNews"
 
 on:
   push:
@@ -10,7 +10,7 @@ env:
   FONT_WECOM_WEBHOOK_KEY: ${{ secrets.FONT_WECOM_WEBHOOK_KEY }}
 
 jobs:
-  build-project:
+  run-sendFontNews:
     runs-on: ubuntu-latest
     steps:
     # 首先copy git仓库到虚拟机上
