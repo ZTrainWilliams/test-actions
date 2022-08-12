@@ -1,0 +1,28 @@
+name: "GitHub Actions fontBlog Bot"
+
+on:
+  push:
+  schedule:
+    # 定时任务，在每天的9点
+    - cron: "0 1 * * *"
+
+env:
+  FONT_WECOM_WEBHOOK_KEY: ${{ secrets.FONT_WECOM_WEBHOOK_KEY }}
+
+jobs:
+  bot:
+    runs-on: ubuntu-latest
+    steps:
+    # 首先copy git仓库到虚拟机上
+      - name: 'Checkout codes'
+        uses: actions/checkout@v1
+
+    - name: Setup Node.js
+        uses: actions/setup-node@v2  #安装node.js
+        with:
+          node-version: '14'
+          
+      - name: Install Dependency       
+        run: |
+          npm install       
+          node ./font-news.js  # 要运行的js脚本，放在根目录下
