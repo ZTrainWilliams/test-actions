@@ -4,6 +4,8 @@ const path = require('path')
 const fs = require('fs-extra')
 const dayjs = require('dayjs')
 
+const FONT_WECOM_WEBHOOK_KEY = process.argv[2]
+
 const hasBeenSent = path.join(__dirname, './hasBeenSent.json')
 
 // 前端咨询地址
@@ -134,5 +136,5 @@ function sendNews(data) {
   )
 }
 
-console.log(FONT_WECOM_WEBHOOK_KEY)
-getNews(FONT_WECOM_WEBHOOK_KEY);
+console.log(FONT_WECOM_WEBHOOK_KEY, process.argv)
+getNews();
