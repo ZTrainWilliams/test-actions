@@ -134,6 +134,5 @@ function sendNews(data) {
   )
 }
 
-export default {
-  getNews
-}
+console.log(FONT_WECOM_WEBHOOK_KEY)
+getNews(FONT_WECOM_WEBHOOK_KEY);
