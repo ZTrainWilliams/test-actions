@@ -99,8 +99,8 @@ async function handleBody(body) {
       return !isExit;
     });
 
+    console.log("sendList", sendList);
     if (sendList.length > 0) {
-      console.log("sendList", sendList);
       sendNews(sendList);
       hadSendData = [...sendList];
       fs.writeJsonSync(hasBeenSent, hadSendData);
@@ -112,7 +112,6 @@ async function handleBody(body) {
 
 function getNews() {
   request.get(newsUrl, (err, res, body) => {
-    console.log(err, res, body);
     if (!err && res.statusCode == 200) {
       handleBody(body);
     } else {
@@ -151,6 +150,7 @@ function sendNews(data) {
       },
     },
     function (err, resp, body) {
+      console.log('sendNews', err, resp, body)
       if (err) {
         console.error(err);
       }
