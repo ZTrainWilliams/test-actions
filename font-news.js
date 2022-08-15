@@ -158,4 +158,4 @@ function sendNews(data) {
   );
 }
 
-getNews(FONT_WECOM_WEBHOOK_KEY);
+getNews();
