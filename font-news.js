@@ -4,12 +4,11 @@ const path = require("path");
 const fs = require("fs-extra");
 const dayjs = require("dayjs");
 
-console.log(process.argv[2], process.env.FONT_WECOM_WEBHOOK_KEY);
 const FONT_WECOM_WEBHOOK_KEY = process.argv[2];
 
 const hasBeenSent = path.join(__dirname, "./hasBeenSent.json");
 
-const webhook = `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${weworkKey}`;
+const webhook = `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${FONT_WECOM_WEBHOOK_KEY}`;
 
 // 前端咨询地址
 const newsUrl = "https://front-end-rss.vercel.app";
