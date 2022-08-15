@@ -3,9 +3,11 @@
   "version": "1.0.0",
   "description": "test-actions",
   "dependencies": {
-    "dayjs": "^1.11.4",
     "cheerio": "^1.0.0-rc.12",
-    "fs-extra": "^10.1.0"
+    "dayjs": "^1.11.4",
+    "fs-extra": "^10.1.0",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
   },
   "devDependencies": {},
   "scripts": {
