@@ -1,8 +1,7 @@
 {
   "name": "test-actions",
   "version": "1.0.0",
-  "description": "[![Android](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-android.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-android.yml)\r [![IOS](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-ios.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-ios.yml)",
-  "main": "font-news.js",
+  "description": "test-actions",
   "dependencies": {
     "dayjs": "^1.11.4",
     "cheerio": "^1.0.0-rc.12",
