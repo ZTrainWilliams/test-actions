@@ -1,0 +1,26 @@
+{
+  "name": "test-actions",
+  "version": "1.0.0",
+  "description": "[![Android](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-android.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-android.yml)\r [![IOS](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-ios.yml/badge.svg)](https://github.com/ZTrainWilliams/test-actions/actions/workflows/manually-build-ios.yml)",
+  "main": "font-news.js",
+  "dependencies": {
+    "dayjs": "^1.11.4",
+    "cheerio": "^1.0.0-rc.12",
+    "fs-extra": "^10.1.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ZTrainWilliams/test-actions.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ZTrainWilliams/test-actions/issues"
+  },
+  "homepage": "https://github.com/ZTrainWilliams/test-actions#readme"
+}
