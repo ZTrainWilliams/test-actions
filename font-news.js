@@ -4,6 +4,7 @@ const path = require('path')
 const fs = require('fs-extra')
 const dayjs = require('dayjs')
 
+console.log( process.argv)
 const FONT_WECOM_WEBHOOK_KEY = process.argv[2]
 
 const hasBeenSent = path.join(__dirname, './hasBeenSent.json')
@@ -136,5 +137,4 @@ function sendNews(data) {
   )
 }
 
-console.log(FONT_WECOM_WEBHOOK_KEY, process.argv)
 getNews();
