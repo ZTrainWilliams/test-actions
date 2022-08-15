@@ -1,7 +1,8 @@
-name: "sendFontNews"
-
+name: sendFontNews
 on:
   push:
+    branches:
+      - main
   schedule:
     # 定时任务，在每天的9点
     - cron: "0 1 * * *"
@@ -13,9 +14,9 @@ jobs:
   run-sendFontNews:
     runs-on: ubuntu-latest
     steps:
-    # 首先copy git仓库到虚拟机上
+      # 首先copy git仓库到虚拟机上
       - name: 'Checkout codes'
-        uses: actions/checkout@v1
+        uses: actions/checkout@main
 
     - name: Setup Node.js
         uses: actions/setup-node@v2  #安装node.js
