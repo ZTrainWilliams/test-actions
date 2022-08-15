@@ -9,7 +9,6 @@ const weworkKey = process.env.FONT_WECOM_WEBHOOK_KEY;
 const hasBeenSent = path.join(__dirname, "./hasBeenSent.json");
 
 const webhook = `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${weworkKey}`;
-console.log(webhook, webhook === 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=6912f3f2-33f1-43e4-8a60-f0c9cd6117e9');
 
 // 前端咨询地址
 const newsUrl = "https://front-end-rss.vercel.app";
@@ -101,7 +100,7 @@ async function handleBody(body) {
     });
 
     if (sendList.length > 0) {
-      sendNews(sendList);
+      sendNews(sendList.slice(0, 10));
       hadSendData = [...sendList];
       fs.writeJsonSync(hasBeenSent, hadSendData);
     }
@@ -150,7 +149,7 @@ function sendNews(data) {
       },
     },
     function (err, resp, body) {
-      console.log('sendNews', body)
+      console.log('sendNews', body, JSON.stringify(formatSendData(data)))
       if (err) {
         console.error(err);
       }
