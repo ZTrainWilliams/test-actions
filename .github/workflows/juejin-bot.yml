@@ -6,10 +6,10 @@ on:
     - cron: "49 1 * * *"
 
 env:
-  FONT_WECOM_WEBHOOK_KEY: ${{ secrets.JUEJIN_COOKIE_KEY }}
+  JUEJIN_COOKIE_KEY: ${{ secrets.JUEJIN_COOKIE_KEY }}
 
 jobs:
-  run-sendFontNews:
+  run-juejin-bot:
     runs-on: ubuntu-latest
     steps:
       # 首先copy git仓库到虚拟机上

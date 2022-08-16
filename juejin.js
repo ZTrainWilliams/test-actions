@@ -1,5 +1,6 @@
 const JuejinHelper = require("juejin-helper");
-
+console.log('JUEJIN_COOKIE_KEY', process.env)
+const JUEJIN_COOKIE_KEY = process.env?.JUEJIN_COOKIE_KEY
 // 海底掘金游戏
 async function runSeagold(juejin) {
   const seagold = juejin.seagold();
@@ -37,7 +38,7 @@ async function runBugFix(juejin) {
 
 async function run() {
   const juejin = new JuejinHelper();
-  await juejin.login(process.env?.JUEJIN_COOKIE_KEY);
+  await juejin.login(JUEJIN_COOKIE_KEY);
 
   const growth = juejin.growth();
 
