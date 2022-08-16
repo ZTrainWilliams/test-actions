@@ -1,5 +1,6 @@
 name: 'juejin Bot'
 on:
+  push:
   schedule:
     # 定时任务，在每天的10点
     - cron: "49 1 * * *"
