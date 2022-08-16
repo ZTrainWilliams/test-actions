@@ -1,39 +1,47 @@
 const JuejinHelper = require("juejin-helper");
-console.log('JUEJIN_COOKIE_KEY', process.env)
-const JUEJIN_COOKIE_KEY = process.env?.JUEJIN_COOKIE_KEY
+
+const JUEJIN_COOKIE_KEY = process.env?.JUEJIN_COOKIE_KEY;
 // 海底掘金游戏
 async function runSeagold(juejin) {
-  const seagold = juejin.seagold();
+  if (juejin.seagold) {
+    const seagold = juejin.seagold();
 
-  await seagold.gameLogin(); // 登陆游戏
+    await seagold.gameLogin(); // 登陆游戏
 
-  let gameInfo = null;
+    let gameInfo = null;
 
-  const info = await seagold.gameInfo(); // 游戏状态
-  if (info.gameStatus === 1) {
-    gameInfo = info.gameInfo; // 继续游戏
+    const info = await seagold.gameInfo(); // 游戏状态
+    if (info.gameStatus === 1) {
+      gameInfo = info.gameInfo; // 继续游戏
+    } else {
+      gameInfo = await seagold.gameStart(); // 开始游戏
+    }
+
+    const command = ["U", "L"];
+    await seagold.gameCommand(gameInfo.gameId, command); // 执行命令
+
+    const result = await seagold.gameOver(); // 游戏结束
+    console.log('seagold', result); // => { ... }
   } else {
-    gameInfo = await seagold.gameStart(); // 开始游戏
+    console.log("no seagold");
   }
-
-  const command = ["U", "L"];
-  await seagold.gameCommand(gameInfo.gameId, command); // 执行命令
-
-  const result = await seagold.gameOver(); // 游戏结束
-  console.log(result); // => { ... }
 }
 
 // bugfix 游戏
 async function runBugFix(juejin) {
-  const bugfix = juejin.bugfix();
+  if (juejin.bugfix) {
+    const bugfix = juejin.bugfix();
 
-  const notCollectBugList = await bugfix.getNotCollectBugList();
-  await bugfix.collectBugBatch(notCollectBugList);
-  console.log(`收集Bug ${notCollectBugList.length}`);
+    const notCollectBugList = await bugfix.getNotCollectBugList();
+    await bugfix.collectBugBatch(notCollectBugList);
+    console.log(`收集Bug ${notCollectBugList.length}`);
 
-  const competition = await bugfix.getCompetition();
-  const bugfixInfo = await bugfix.getUser(competition);
-  console.log(`未消除Bug数量 ${bugfixInfo.user_own_bug}`);
+    const competition = await bugfix.getCompetition();
+    const bugfixInfo = await bugfix.getUser(competition);
+    console.log(`未消除Bug数量 ${bugfixInfo.user_own_bug}`);
+  } else {
+    console.log("no Bugfix");
+  }
 }
 
 async function run() {
@@ -69,7 +77,7 @@ async function run() {
   // 沾喜气
   // await growth.dipLucky(lottery_history_id); // => { has_dip, dip_value, total_value, dip_action }
 
-  // runSeagold();
+  runSeagold();
   runBugFix();
 
   await juejin.logout();
