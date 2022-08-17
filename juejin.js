@@ -3,7 +3,7 @@ const JuejinHelper = require("juejin-helper");
 const JUEJIN_COOKIE_KEY = process.env?.JUEJIN_COOKIE_KEY;
 // 海底掘金游戏
 async function runSeagold(juejin) {
-  if (juejin.seagold) {
+  if (juejin?.seagold) {
     const seagold = juejin.seagold();
 
     await seagold.gameLogin(); // 登陆游戏
@@ -29,7 +29,7 @@ async function runSeagold(juejin) {
 
 // bugfix 游戏
 async function runBugFix(juejin) {
-  if (juejin.bugfix) {
+  if (juejin?.bugfix) {
     const bugfix = juejin.bugfix();
 
     const notCollectBugList = await bugfix.getNotCollectBugList();
