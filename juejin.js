@@ -1,3 +1,8 @@
+/*
+ * @Author: ZtrainWilliams ztrain1224@163.com
+ * @Date: 2022-08-12 18:00:04
+ * @Description:
+ */
 const JuejinHelper = require("juejin-helper");
 
 const JUEJIN_COOKIE_KEY = process.env?.JUEJIN_COOKIE_KEY;
@@ -21,7 +26,7 @@ async function runSeagold(juejin) {
     await seagold.gameCommand(gameInfo.gameId, command); // 执行命令
 
     const result = await seagold.gameOver(); // 游戏结束
-    console.log('seagold', result); // => { ... }
+    console.log("seagold", result); // => { ... }
   } else {
     console.log("no seagold");
   }
@@ -43,6 +48,18 @@ async function runBugFix(juejin) {
     console.log("no Bugfix");
   }
 }
+
+// 有免费次数则抽奖
+const handleFreeLottery = async function (growth) {
+  // 获取抽奖配置
+  const lotteryConfig = await growth.getLotteryConfig();
+
+  while (lotteryConfig.free_count > 0) {
+    // 抽奖
+    await growth.drawLottery();
+    lotteryConfig.free_count--;
+  }
+};
 
 async function run() {
   const juejin = new JuejinHelper();
@@ -76,6 +93,8 @@ async function run() {
 
   // 沾喜气
   // await growth.dipLucky(lottery_history_id); // => { has_dip, dip_value, total_value, dip_action }
+
+  handleFreeLottery(growth);
 
   runSeagold();
   runBugFix();
