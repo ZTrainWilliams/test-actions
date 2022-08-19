@@ -53,6 +53,7 @@ async function runBugFix(juejin) {
 const handleFreeLottery = async function (growth) {
   // 获取抽奖配置
   const lotteryConfig = await growth.getLotteryConfig();
+  console.log(lotteryConfig);
 
   while (lotteryConfig.free_count > 0) {
     // 抽奖
@@ -68,7 +69,7 @@ async function run() {
   const growth = juejin.growth();
 
   // 签到
-  await growth.checkIn();
+  // await growth.checkIn();
 
   // 获取当前矿石数
   // await growth.getCurrentPoint();
@@ -94,10 +95,10 @@ async function run() {
   // 沾喜气
   // await growth.dipLucky(lottery_history_id); // => { has_dip, dip_value, total_value, dip_action }
 
-  handleFreeLottery(growth);
-
   runSeagold();
   runBugFix();
+
+  handleFreeLottery(growth);
 
   await juejin.logout();
 }
