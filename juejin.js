@@ -69,7 +69,7 @@ async function run() {
   const growth = juejin.growth();
 
   // 签到
-  // await growth.checkIn();
+  await growth.checkIn();
 
   // 获取当前矿石数
   // await growth.getCurrentPoint();
