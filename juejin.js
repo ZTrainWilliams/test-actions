@@ -98,7 +98,9 @@ async function run() {
   runSeagold();
   runBugFix();
 
-  handleFreeLottery(growth);
+  setTimeout(() => {
+    handleFreeLottery(growth);
+  }, 2000);
 
   await juejin.logout();
 }
