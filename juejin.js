@@ -68,8 +68,10 @@ async function run() {
 
   const growth = juejin.growth();
 
-  // 签到
-  await growth.checkIn();
+  try {
+    // 签到
+    await growth.checkIn();
+  } catch (e) {}
 
   // 获取当前矿石数
   // await growth.getCurrentPoint();
@@ -98,7 +100,9 @@ async function run() {
   runSeagold();
   runBugFix();
 
-  handleFreeLottery(growth);
+  setTimeout(() => {
+    handleFreeLottery(growth);
+  }, 2000);
 
   await juejin.logout();
 }
