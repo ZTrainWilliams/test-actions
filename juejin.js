@@ -52,6 +52,7 @@ async function runBugFix(juejin) {
 // 有免费次数则抽奖
 const handleFreeLottery = async function () {
   const juejin = new JuejinHelper();
+  await juejin.login(JUEJIN_COOKIE_KEY);
   const growth = juejin.growth();
   // 获取抽奖配置
   const lotteryConfig = await growth.getLotteryConfig();
