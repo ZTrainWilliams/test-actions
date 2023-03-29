@@ -50,15 +50,32 @@ async function runBugFix(juejin) {
 }
 
 // 有免费次数则抽奖
-const handleFreeLottery = async function (growth) {
+const handleFreeLottery = async function () {
+  const juejin = new JuejinHelper();
+  await juejin.login(JUEJIN_COOKIE_KEY);
+  const growth = juejin.growth();
   // 获取抽奖配置
   const lotteryConfig = await growth.getLotteryConfig();
-  console.log(lotteryConfig);
 
   while (lotteryConfig.free_count > 0) {
     // 抽奖
-    await growth.drawLottery();
+    try {
+      await growth.drawLottery();
+    } catch (error) {}
     lotteryConfig.free_count--;
+  }
+
+  console.log(lotteryConfig);
+  // 沾喜气
+  const luckyusersResult = await growth.getLotteriesLuckyUsers();
+  if (luckyusersResult.count > 0) {
+    const no1LuckyUser = luckyusersResult.lotteries[0];
+    const dipLuckyResult = await growth.dipLucky(no1LuckyUser.history_id);
+    if (dipLuckyResult.has_dip) {
+      console.log(`今天你已经沾过喜气，明天再来吧!`);
+    } else {
+      console.log(`沾喜气 +${dipLuckyResult.dip_value} 幸运值`);
+    }
   }
 };
 
@@ -68,8 +85,10 @@ async function run() {
 
   const growth = juejin.growth();
 
-  // 签到
-  // await growth.checkIn();
+  try {
+    // 签到
+    await growth.checkIn();
+  } catch (e) {}
 
   // 获取当前矿石数
   // await growth.getCurrentPoint();
