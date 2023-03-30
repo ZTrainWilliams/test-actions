@@ -1,15 +1,10 @@
 const request = require("request");
-const path = require("path");
-const fs = require("fs-extra");
 const dayjs = require("dayjs");
 
 const weworkKey = process.env.PRODUCT_MAN_WEBHOOK_KEY;
-// const hasBeenSent = path.join(__dirname, "./hasBeenSentProduct.json");
 const webhook = `https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=${weworkKey}`;
 // 咨询地址
 const newsUrl = "https://www.woshipm.com/api2/app/article/popular/daily";
-//记录已经推送的最新列表
-let hadSendData = [];
 
 // 排序
 const sortDate = (arr) => {
@@ -54,35 +49,8 @@ async function handleBody(body) {
 
     sendList = sortDate(newsList);
 
-    // //存在内存中就不读取文件
-    // if ((await fs.pathExists(hasBeenSent)) && hadSendData.length <= 0) {
-    //   try {
-    //     hadSendData = (await fs.readJson(hasBeenSent)) || [];
-    //   } catch (error) {
-    //     console.error(error);
-    //   }
-    // }
-    // //过滤已发送或者日期相对较旧
-    // sendList = sendList.filter((item) => {
-    //   let isExit = false;
-    //   hadSendData.map((hs) => {
-    //     if (
-    //       (hs.articleTitle === item.articleTitle && hs.articleAuthor === item.articleAuthor) ||
-    //       item.publishTime < hs.publishTime
-    //     ) {
-    //       isExit = true;
-    //     }
-    //   });
-    //   if (hasAds(item.articleTitle)) {
-    //     isExit = true;
-    //   }
-    //   return !isExit;
-    // });
-
     if (sendList.length > 0) {
       sendNews(sendList.slice(0, 10));
-      // hadSendData = [...sendList];
-      // fs.writeJsonSync(hasBeenSent, hadSendData);
     }
   } catch (error) {
     console.error(error);
