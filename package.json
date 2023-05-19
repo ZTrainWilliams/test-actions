@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "test-actions",
   "dependencies": {
+    "cheerio": "^1.0.0-rc.12",
     "juejin-helper": "^1.6.1",
     "dayjs": "^1.11.4",
     "request": "^2.88.2"
