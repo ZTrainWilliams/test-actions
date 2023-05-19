@@ -180,8 +180,6 @@ function getYunyingNews() {
 function getFrontNews() {
   return new Promise((resolve, reject) => {
     request.get(frontNewsUrl, (err, res, body) => {
-      console.log('getFrontNews-body', body)
-
       if (!err && res.statusCode == 200) {
         const $ = cheerio.load(body);
         const newsList = $("script");
@@ -199,6 +197,7 @@ function getFrontNews() {
             const jsonStr = newsList[item].children[0]?.data
               .split(regData)?.[1]
               .split(reg)[0];
+             console.log('getFrontNews-body', jsonStr)
             const jsonData = JSON.parse(jsonStr);
             jsonData.map((it) => {
               it.items.map((l) => {
