@@ -123,8 +123,8 @@ function getProductNews() {
           list: sortDate(result).slice(0, sliceIndex),
         });
       } else {
-        reject(null);
         console.error(err);
+        reject(null);
       }
     });
   });
@@ -169,8 +169,8 @@ function getYunyingNews() {
         };
         resolve(result);
       } else {
-        reject(null);
         console.error(err);
+        reject(null);
       }
     });
   });
@@ -197,7 +197,6 @@ function getFrontNews() {
             const jsonStr = newsList[item].children[0]?.data
               .split(regData)?.[1]
               .split(reg)[0];
-             console.log('getFrontNews-body', jsonStr)
             const jsonData = JSON.parse(jsonStr);
             jsonData.map((it) => {
               it.items.map((l) => {
@@ -241,8 +240,6 @@ function getCsdnBlogNews() {
   return new Promise((resolve, reject) => {
     request.get(csdnBlogUrl, (err, res, body) => {
       console.log('getCsdnBlogNews-body', body)
-
-      console.log(body)
       const data = JSON.parse(body);
       if (!err && data.code == 200) {
         const newList = [];
@@ -269,8 +266,8 @@ function getCsdnBlogNews() {
         };
         resolve(result);
       } else {
-        reject(null);
         console.error(err);
+        reject(null);
       }
     });
   });
