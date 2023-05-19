@@ -1,30 +1,30 @@
-name: 'Dept News'
-on:
-  push:
-  schedule:
-    # 定时任务(UTC)
-    - cron: "59 23 * * *"
+# name: 'Dept News'
+# on:
+#   push:
+#   schedule:
+#     # 定时任务(UTC)
+#     - cron: "59 23 * * *"
 
-env:
-  PRODUCT_MAN_WEBHOOK_KEY: ${{ secrets.PRODUCT_MAN_WEBHOOK_KEY }}
+# env:
+#   PRODUCT_MAN_WEBHOOK_KEY: ${{ secrets.PRODUCT_MAN_WEBHOOK_KEY }}
 
-jobs:
-  run-sendFontNews:
-    runs-on: ubuntu-latest
-    steps:
-      # 首先copy git仓库到虚拟机上
-      - name: 'Checkout codes'
-        uses: actions/checkout@v1
+# jobs:
+#   run-sendFontNews:
+#     runs-on: ubuntu-latest
+#     steps:
+#       # 首先copy git仓库到虚拟机上
+#       - name: 'Checkout codes'
+#         uses: actions/checkout@v1
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v1  #安装node.js
-        with:
-          node-version: '14'
+#       - name: Setup Node.js
+#         uses: actions/setup-node@v1  #安装node.js
+#         with:
+#           node-version: '14'
           
-      - name: Install Dependency
-        run: |
-          npm install
-      - name: node dept-news   
-        # 要运行的js脚本，放在根目录下
-        run: |
-          node ./deptNews.js "${{secrets.PRODUCT_MAN_WEBHOOK_KEY}}"
+#       - name: Install Dependency
+#         run: |
+#           npm install
+#       - name: node dept-news   
+#         # 要运行的js脚本，放在根目录下
+#         run: |
+#           node ./deptNews.js "${{secrets.PRODUCT_MAN_WEBHOOK_KEY}}"
