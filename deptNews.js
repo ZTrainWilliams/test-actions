@@ -239,7 +239,7 @@ function getFrontNews() {
 function getCsdnBlogNews() {
   return new Promise((resolve, reject) => {
     request.get(csdnBlogUrl, (err, res, body) => {
-      console.log('getCsdnBlogNews-body', body)
+      console.log('getCsdnBlogNews-body', err, res, body)
       const data = JSON.parse(body);
       if (!err && data.code == 200) {
         const newList = [];
