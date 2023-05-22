@@ -276,7 +276,10 @@ function getCsdnBlogNews() {
 // 获取测试咨询
 function getTestNews() {
   return new Promise((resolve, reject) => {
-    request.get(testUtl, (err, res, body) => {
+    request(testUtl,{
+      method: 'get',
+      timeout: 25000
+    }, (err, res, body) => {
       console.log('getTestNews-body', body)
 
       if (!err) {
