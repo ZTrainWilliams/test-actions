@@ -3,7 +3,7 @@ on:
   push:
   schedule:
     # 定时任务，在每天的10点
-    - cron: "57 23 * * *"
+    - cron: "59 22 * * *"
 
 env:
   JUEJIN_COOKIE_KEY: ${{ secrets.JUEJIN_COOKIE_KEY }}
